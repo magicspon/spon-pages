@@ -1,0 +1,44 @@
+{
+	"name": "spon-pages",
+	"description": "Page Transitions Chuff",
+	"version": "0.0.1",
+	"main": "gulpfile.babel.js",
+	"author": "Dave Stockley",
+	"license": "MIT",
+	"engines": {
+		"node": ">=8.6.0"
+	},
+	"bugs": {
+		"url": "https://github.com/ournameismud/mud-fractal/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/ournameismud/mud-fractal.git"
+	},
+	"browser": true,
+	"jest": {
+		"setupFiles": ["<rootDir>/setup-jest.js"],
+		"mapCoverage": true,
+		"collectCoverageFrom": ["src/**/*.{js,jsx,ts,tsx}"],
+		"testMatch": ["**/?(*.)(spec|test).js?(x)"]
+	},
+	"quokka": {
+		"babel": true,
+		"installPackageCommand": "yarn add {packageName}",
+		"plugins": ["jsdom-quokka-plugin"]
+	},
+	"homepage": "https://github.com/ournameismud/mud-fractal#readme",
+	"scripts": {
+		"start": "gulp",
+		"build": "gulp build --env production",
+		"test": "jest",
+		"test:watch": "jest --watch",
+		"coverage": "jest --coverage"
+	},
+	"dependencies": {
+		"debug": "^3.1.0"
+	},
+	"devDependencies": {
+		"mulp": "1.0.4"
+	}
+}
