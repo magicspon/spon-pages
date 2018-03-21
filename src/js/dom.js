@@ -2,18 +2,45 @@
   Dom object
 */
 
-export function getPageWrapper(id = 'page-wrapper') {
-	const $page = document.getElementById(id)
-
-	if (!$page) {
-		throw new Error('Page must have an id')
+export default (
+	options = {
+		id: 'page-wrapper',
+		selector: '[data-spon-page]'
 	}
+) => {
+	const { id, selector } = options
 
-	return $page
-}
+	let $page
+	let $html
 
-export function getPageChild(selector = '[data-spon-page]') {
-	const $child = document.querySelector(selector)
+	return {
+		getPageWrapper() {
+			$page = document.getElementById(id)
 
-	return $child
+			if (!$page) {
+				throw new Error('Page must have an id')
+			}
+
+			return $page
+		},
+
+		getPageChild() {
+			const $child = document.querySelector(selector)
+			return $child
+		},
+
+		parseResponse(string) {
+			const box = document.createElement('div')
+			box.innerHTML = string
+
+			const $title = box.querySelector('title')
+
+			return {
+				title: $title ? $title.textContent : false,
+				html: box.querySelector(selector)
+			}
+		},
+
+		injectNewHtml() {}
+	}
 }
